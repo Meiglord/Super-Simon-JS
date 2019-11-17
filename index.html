@@ -5,8 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Super Simon</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+
+<!-- Bouton Règles-->
+<button class="regles" id="openModal">Règles</button>
+
+<!-- Modal de Règles -->
+<div id="Modal" class="modal">
+    <div class="modal-contenu">
+        <div class="modal-header">
+        <span class="closeModal">&times;</span>
+        </div>
+        <div class="modal-body">
+        <p>Bienvenue sur Super Simon !</p>
+        <p>Cliquez sur Jouer pour commencer la partie.</p>
+        <p>Règles :</p>
+        </div>
+    </div>
+</div>
+
+<div id="cercle-externe">
+
+    <div id="topleft" onclick=""> </div>
+    <div id="topright" onclick=""> </div>
+    <div id="bottomleft" onclick=""> </div>
+    <div id="bottomright" onclick=""> </div>
+
+    <div id="cercle-interne">
+        <div class="score" id=""> 
+            Tour(s) terminé(s) : 
+            <p id="ScoreByRound">0</p>
+            Case(s) cliquée(s) :
+            <p id="ScoreByClick">0</p>
+
+        </div>
+        <button id="start" onclick="start()">Jouer</button>
+    </div>
+
+</div>
     
+    <script  src="main.js"></script>
 </body>
 </html>
