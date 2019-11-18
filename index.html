@@ -20,19 +20,32 @@
         <span class="closeModal">&times;</span>
         </div>
         <div class="modal-body">
-        <p>Bienvenue sur Super Simon !</p>
-        <p>Cliquez sur Jouer pour commencer la partie.</p>
-        <p>Règles :</p>
+            <p>Bienvenue sur Super Simon !</p>
+            <p>Cliquez sur Jouer pour commencer la partie.</p>
+            <p>Règles :</p>
+            <ol>
+                <li>L'ordinateur va générer aléatoirement une suite qu'il vous faudra mémoriser.</li>
+                <li>A votre tour, vous devrez restituer la suite dans le bon ordre. En cas d'erreur, retour à Zéro !</li>
+                <li>La suite commence à 1 et va ensuite augmenter de 1 à chaque tour.</li>
+                <li>Les 8 premiers tours la vitesse va augmenter</li>
+                <li>Cliquez sur Reset pour réinitialiser la partie</li>
+            </ol>
         </div>
     </div>
 </div>
 
+<div>
+    <p id="monTour">A ton tour !</p>
+    <p id="IATour">Mémorisez la suite</p>
+
+</div>
+
 <div id="cercle-externe">
 
-    <div id="topleft" onclick=""> </div>
-    <div id="topright" onclick=""> </div>
-    <div id="bottomleft" onclick=""> </div>
-    <div id="bottomright" onclick=""> </div>
+    <div class="bouton vert" id="0" onclick="clickOnColor(this.id)"> </div>
+    <div class="bouton rouge" id="1" onclick="clickOnColor(this.id)"> </div>
+    <div class="bouton bleu" id="2" onclick="clickOnColor(this.id)"> </div>
+    <div class="bouton jaune" id="3" onclick="clickOnColor(this.id)"> </div>
 
     <div id="cercle-interne">
         <div class="score" id=""> 
@@ -42,7 +55,10 @@
             <p id="ScoreByClick">0</p>
 
         </div>
-        <button id="start" onclick="start()">Jouer</button>
+        <div class="startstop">
+            <button id="start" onclick="start()">Jouer</button>
+            <button id="reset" onclick="reset()">Reset</button>
+        </div>
     </div>
 
 </div>

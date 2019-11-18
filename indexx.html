@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="maincalc.js"></script> 
+</head>
+<body>
+
+    <div class="container">
+        <div class="calculator">
+        <div id="display">
+            
+        </div>
+        <div id="divider">
+            <div id="row-buttons">
+                <div onclick="delet()" id="delete" class="button">Delete</div>
+                <div onclick="clearr()" id="clear" class="button ">Clear</div>
+
+            </div>
+            <div id="row-buttons">
+                    <div onclick="addArray(this.id)" id="7" class="button ">7</div>
+                    <div onclick="addArray(this.id)"  id="8" class="button ">8</div>
+                    <div onclick="addArray(this.id)" id="9" class="button ">9</div>
+                    <div onclick="addArray(this.id)" id="*" class="button ">*</div>
+
+            </div>
+            <div id="row-buttons">
+                    <div onclick="addArray(this.id)" id="4" class="button ">4</div>
+                    <div onclick="addArray(this.id)" id="5" class="button ">5</div>
+                    <div onclick="addArray(this.id)" id="6" class="button ">6</div>
+                    <div onclick="addArray(this.id)" id="-" class="button ">-</div>
+            </div>
+            <div id="row-buttons">
+                    <div onclick="addArray(this.id)" id="1" class="button">1</div>
+                    <div onclick="addArray(this.id)" id="2" class="button ">2</div>
+                    <div onclick="addArray(this.id)" id="3" class="button ">3</div>
+                    <div onclick="addArray(this.id)" id="+" class="button ">+</div>
+            </div>
+            <div id="row-buttons">
+                    <div onclick="addArray(this.id)" id="." class="button ">.</div>
+                    <div onclick="addArray(this.id)" id="0" class="button ">0</div>
+                    <div onclick="addArray(this.id)" id="/" class="button ">/</div>
+                    <div onclick="resultat()" id='egal' class="button ">=</div>
+            </div>
+            
+
+
+        </div>
+    </div>
+    </div>
+    
+</body>
+</html>

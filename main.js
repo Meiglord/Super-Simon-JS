@@ -2,37 +2,90 @@
 
 var modal = document.getElementById("Modal");
 
-// Le bouton qui ouvre le modal
 var btn = document.getElementById("openModal");
 
-// Span qui ferme le modal
 var span = document.getElementsByClassName("closeModal")[0];
 
-// Quand l'utilisateur clique sur le bouton information, ouvre le Modal
 btn.onclick = function() {
     modal.style.display = "block";
 }
 
-// Fermer le modal quand l'utilisateur clique sur la Croix
 span.onclick = function() {
     modal.style.display = "none";
 }
 
-// Quand l'utilisateur cliquera en dehors du Modal, on le ferme
 window.onclick = function(event) {
-if (event.target == modal) {
+    if (event.target == modal) {
     modal.style.display = "none";
+    }
 }
 
+// Mes variables
 
+    // Tableau qui va enregistrer la couleur qu'on a générée aléatoirement
+    let randomColor = []
 
+    // Tableau qui va enregistrer les couleurs sur lesquelles l'utilisateur a cliqué
+    let colorClick = []
 
-}
-function regles() {
-    alert("Bienvenue sur mon Jeu Super Simon ! <br>Pour lancer le jeu, cliquez sur 'Jouer'");
-}
-
+// Lancement du jeu
 
 function start(){
     console.log('Jeu commencé')
 }
+
+// Reset de la partie
+
+function reset(){
+    randomColor = []
+    colorClick = []
+    
+    console.log(randomColor, colorClick)
+    
+}
+
+// Si c'est au joueur ou à l'IA de jouer
+
+
+// Fonction générant un nombre aléatoire entre 0 et 3 pour l'utiliser plus tard
+
+function randomNumber() {
+    return Math.floor(Math.random() * 4); 
+}
+
+console.log(randomNumber())
+// On va associer le nombre random que l'on vient de récupérer à un bouton
+
+switch (randomNumber()) {
+    case 0:
+        document.getElementById(0)
+        randomColor.push(this.id)
+        console.log('Vert')
+    break
+    case 1:
+        document.getElementById(1)
+        randomColor.push(this.id)
+        console.log('Rouge')
+    break
+    case 2:
+        document.getElementById(2)
+        randomColor.push(this.id)
+        console.log('Bleu')
+    break
+    case 3:
+        document.getElementById(3)
+        randomColor.push(this.id)
+        console.log('Jaune')
+    break
+}
+
+console.log(randomColor)
+
+// Quand on clique sur un bouton, on va push son ID dans l'array colorClick
+
+function clickOnColor(id){
+    colorClick.push(id)
+    console.log(colorClick)
+}
+
+// On check que l'array randomColor qui génère aléatoirement la suite soit bien raccord avec colorClick, où l'on a reproduit cette suite 
