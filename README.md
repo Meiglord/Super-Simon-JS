@@ -11,4 +11,4 @@ Ma TO DO LIST
 5 - Comptabiliser le nombre de clics sur les différents boutons et les implémenter sur le score ( que quand le jeu est actif)
 6 - //                         tours réussis
 7 - Si le jeu n'est pas lancé, le joueur ne peut pas cliquer sur les boutons. DONE
-8 - Si le jeu
+8 - Si le joueur clique sur RESET, il ne pourra plus cliquer sur les boutons. DONE
