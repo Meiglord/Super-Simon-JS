@@ -13,7 +13,7 @@ let antiClick = document.getElementById('bloque');
 let antiClickStart = document.getElementById("start");
 
 // on crée une variable vitesse
-let speed = 1700
+let speed = 1400
 
 // fonction wait. ne pas oublier les async quand on l'utilise !
 
@@ -30,6 +30,7 @@ async function start(){
     antiClickStart.classList.add("blocus"); // J'empêche l'utilisateur de recliquer sur Jouer quand il a commencé sa partie
     await sleep(800)
     randomColorButtonStock= []
+    antiClick.classList.remove("blocus");
     console.log('Jeu commencé') // je vérifie que la fonction est bien lancée
     newTurn() // On lance le jeu
 }
@@ -39,13 +40,13 @@ async function start(){
 async function reset(){
     randomColorButtonStock = [] // On remet à Zéro le tableau qui stockait la suite générée aléatoirement
     colorButtonStock = [] // idem pour le tableau qui stockait la suite que le joueur a entrée
+    speed = 1700
     document.getElementById('ScoreByTurn').innerHTML= 0
     document.getElementById('ScoreByClick').innerHTML= 0; // On reset le score par click
     antiClickStart.classList.remove("blocus"); // J'enlève la class qui empêche le joueur de cliquer sur Start
     console.log(randomColorButtonStock, colorButtonStock) // je vérifie que les tableaux soient bien vide
     await sleep(400)
     playerTurn = false
-    randomColorButtonStock = [] // On remet à Zéro le tableau qui stockait la suite générée aléatoirement
 }
 
 /* Je veux ne lancer la fonction QUE quand Start est lancé, et donc générer un nombre qui sera push dans l'array*/
@@ -78,14 +79,14 @@ function generateRandomNumber(){
     console.log('Le Nombre généré aléatoirement est ',randomColorButtonStock)
 }
 
-
-
 // Quand on clique sur un bouton, on va push son ID dans l'array colorClick
 
 async function clickOnColorButton(id){
     document.getElementById('ScoreByClick').innerHTML= colorButtonStock.length+1 ;
     colorButtonStock.push(id)
     console.log('Le joueur a cliqué sur le bouton correspondant à ', colorButtonStock)
+    let audio = new Audio('https://meiglord.github.io/Super-Simon-JS/sounds/' + id +".wav" )
+        audio.play()
     await sleep(speed)
     compare()
     
@@ -156,7 +157,7 @@ async function newTurn(){
     generateRandomNumber()
     await sleep(100)
     for (let i = 0; i < randomColorButtonStock.length; i++){
-        let audio = new Audio('https://https://meiglord.github.io/Super-Simon-JS/' + randomColorButtonStock[i] +".wav" )
+        let audio = new Audio('https://meiglord.github.io/Super-Simon-JS/sounds/' + randomColorButtonStock[i] +".wav" )
         audio.play()
         clignotement(document.getElementById(randomColorButtonStock[i]))
         await sleep(speed)
