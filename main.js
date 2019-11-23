@@ -156,7 +156,7 @@ async function newTurn(){
     generateRandomNumber()
     await sleep(100)
     for (let i = 0; i < randomColorButtonStock.length; i++){
-        let audio = new Audio('https://lockev.github.io/SuperSimon/sounds/' -"T" + randomColorButtonStock[i] +".wav" )
+        let audio = new Audio('https://https://meiglord.github.io/Super-Simon-JS/' + randomColorButtonStock[i] +".wav" )
         audio.play()
         clignotement(document.getElementById(randomColorButtonStock[i]))
         await sleep(speed)
