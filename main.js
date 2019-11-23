@@ -15,6 +15,14 @@ let antiClickStart = document.getElementById("start");
 // on crée une variable vitesse
 let speed = 1400
 
+// Pour éviter les bugs
+
+let GameOn = false
+
+// Pour éviter que le joueur joue si il n'a pas à jouer (pendant que l'IA joue par exemple)
+
+let playerTurn = 0
+console.log(playerTurn)
 // fonction wait. ne pas oublier les async quand on l'utilise !
 
 function sleep(ms) {
@@ -31,13 +39,15 @@ async function start(){
     await sleep(800)
     randomColorButtonStock= []
     antiClick.classList.remove("blocus");
-    console.log('Jeu commencé') // je vérifie que la fonction est bien lancée
+    GameOn = true
+    console.log('Jeu commencé ' + GameOn) // je vérifie que la fonction est bien lancée
     newTurn() // On lance le jeu
 }
 
 // Reset de la partie quand le joueur clique
 
 async function reset(){
+    GameOn = false
     randomColorButtonStock = [] // On remet à Zéro le tableau qui stockait la suite générée aléatoirement
     colorButtonStock = [] // idem pour le tableau qui stockait la suite que le joueur a entrée
     speed = 1700
@@ -46,7 +56,8 @@ async function reset(){
     antiClickStart.classList.remove("blocus"); // J'enlève la class qui empêche le joueur de cliquer sur Start
     console.log(randomColorButtonStock, colorButtonStock) // je vérifie que les tableaux soient bien vide
     await sleep(400)
-    playerTurn = false
+    playerTurn = 0
+    console.log(playerTurn)
 }
 
 /* Je veux ne lancer la fonction QUE quand Start est lancé, et donc générer un nombre qui sera push dans l'array*/
@@ -102,11 +113,12 @@ async function compare(){
         }
         i++;
     });
-    if (randomColorButtonStock.length == colorButtonStock.length ){
+    if (randomColorButtonStock.length == colorButtonStock.length && GameOn == true ){
         console.log('Bien joué')
         await sleep(100)
         newTurn()
     }
+    playerTurn = false
 }
 
 
@@ -162,33 +174,29 @@ async function newTurn(){
         clignotement(document.getElementById(randomColorButtonStock[i]))
         await sleep(speed)
     }
-    let playerTurn = true
+    playerTurn = 1
     
 }
 
 // Fonction qui s'active quand le joueur perd
 function lose(){
     modalLose.style.display = "block";
+    GameOn = false
     reset()
     
 }
 
 // Si c'est au joueur ou à l'IA de jouer
-
-
-
-
-/*
 switch (playerTurn) {
-    case true:
+    case 1:
         antiClick.classList.remove("blocus")
         document.getElementById('monTour').style.background = "rgb(0, 201, 7)"
-        document.getElementById('IATour').style.display ="";
+        document.getElementById('IATour').style.background ="grey";
     break;
 
-    case false:
+    case 0:
         antiClick.classList.add("blocus")
         document.getElementById('IATour').style.background = "rgb(0, 201, 7)"
-        document.getElementById('monTour').style.display="";
+        document.getElementById('monTour').style.background="grey";
     break;
-}*/
+}
