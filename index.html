@@ -35,6 +35,19 @@
     </div>
 </div>
 
+<div id="ModalLose" class="modal">
+    <div class="modal-contenu">
+        <div class="modal-header">
+        <span class="closeModalLose">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>Perdu !</p>
+            <p>Clique sur Jouer pour retenter ta chance !</p>
+        </div>
+    </div>
+</div>
+
+
 <div>
     <p id="monTour">A ton tour !</p>
     <p id="IATour">Mémorisez la suite</p>
@@ -43,15 +56,15 @@
 
 <div id="cercle-externe">
     <div class="blocus" id="bloque">
-        <div class= "vert vert-bg"   id="0" onclick="clickOnColorButton(this.id)"> </div>
-        <div class= "rouge rouge-bg" id="1" onclick="clickOnColorButton(this.id) "> </div>
-        <div class= "bleu bleu-bg"   id="2" onclick="clickOnColorButton(this.id)"> </div>
-        <div class= "jaune jaune-bg" id="3" onclick="clickOnColorButton(this.id)"> </div>
+        <div class= "vert vert-bg"   id="0" onclick="clickOnColorButton(this.id)"> <p class="do">DO</p> </div>
+        <div class= "rouge rouge-bg" id="1" onclick="clickOnColorButton(this.id) "><p class="re">RE</p></div>
+        <div class= "bleu bleu-bg"   id="2" onclick="clickOnColorButton(this.id)"><p class="mi">MI</p></div>
+        <div class= "jaune jaune-bg" id="3" onclick="clickOnColorButton(this.id)"><p class="fa">FA</p></div>
     </div>
     <div id="cercle-interne">
         <div class="score" id=""> 
             Tour(s) terminé(s) : 
-            <p id="ScoreByRound">0</p>
+            <p id="ScoreByTurn">0</p>
             Case(s) cliquée(s) :
             <p id="ScoreByClick">0</p>
 
@@ -63,7 +76,6 @@
     </div>
 
 </div>
-    
     <script  src="main.js"></script>
     <script  src="modal.js"></script>
 </body>

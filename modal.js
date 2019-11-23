@@ -19,3 +19,21 @@ window.onclick = function(event) {
     modal.style.display = "none";
     }
 }
+
+// Modal Loose
+
+let modalLose = document.getElementById("ModalLose");
+
+
+let spanLose = document.getElementsByClassName("closeModalLose")[0];
+
+
+spanLose.onclick = function() {
+    modalLose.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modalLose) {
+    modalLose.style.display = "none";
+    }
+}

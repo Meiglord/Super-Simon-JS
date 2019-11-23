@@ -72,6 +72,20 @@
     cursor: pointer;
 }
 
+.closeModalLose{
+    color: rgb(26, 26, 26);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeModalLose:hover,
+.closeModalLose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 /* Score */
 
@@ -83,12 +97,13 @@
         text-align: center;
     }
 
-    #ScoreByRound{
+    #ScoreByTurn{
         position: relative;
         font-size: 20px;
         line-height: 20px;
         font-weight: 600;
         display: inline-block;
+        color: rgb(0, 0, 0);
 
 
     }
@@ -98,6 +113,7 @@
         line-height: 20px;
         font-weight: 600;
         display: inline-block;
+        color: rgb(0, 0, 0);
     }
 
 /* Boutons */
@@ -206,6 +222,10 @@ transform: translateY(3px);
 .vert:active{
     background: rgb(159, 255, 146);
 
+}
+
+.do{
+    display: grid;
 }
 
 .rouge {
