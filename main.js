@@ -22,24 +22,27 @@ let GameOn = false
 // Pour éviter que le joueur joue si il n'a pas à jouer (pendant que l'IA joue par exemple)
 
 let playerTurn = false
-console.log(playerTurn)
+console.log('Le joueur peut-il jouer ? ' + playerTurn)
 
 
-// Si c'est au joueur ou à l'IA de jouer
-switch (playerTurn) {
-    case 1:
-        antiClick.classList.remove("blocus")
-        document.getElementById('monTour').style.background = "rgb(0, 201, 7)"
-        document.getElementById('IATour').style.background ="grey";
-    break;
+// Si c'est au joueur de jouer : on lui permet de cliquer et on le lui dit, sinon, il ne peut pas cliquer et on le lui dit aussi.
+function turn(){ 
+    switch (playerTurn) {
+        case false:
+            antiClick.classList.add("blocus")
+            document.getElementsByClassName('monTour').style.backgroundColor  = "rgb(0, 201, 7)";
+            document.getElementsByClassName('IATour').style.backgroundColor  ="grey";
+            console.log('Le joueur ne peut pas jouer ')
+        break;
 
-    case 0:
-        antiClick.classList.add("blocus")
-        document.getElementById('IATour').style.background = "rgb(0, 201, 7)"
-        document.getElementById('monTour').style.background="grey";
-    break;
+        case true:
+            antiClick.classList.remove("blocus")
+            document.getElementsByClassName('IATour').style.backgroundColor = "rgb(0, 201, 7)";
+            document.getElementsByClassName('monTour').style.backgroundColor ="grey";
+            console.log('Le joueur peut jouer ')
+        break;
+    }
 }
-
 
 // fonction wait. ne pas oublier les async quand on l'utilise !
 
@@ -47,8 +50,6 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// On va empêcher le joueur de cliquer pendant que l'IA fait la combinaison de touches
-//let playerTurn = false
 
 // Lancement du jeu
 
@@ -56,7 +57,6 @@ async function start(){
     antiClickStart.classList.add("blocus"); // J'empêche l'utilisateur de recliquer sur Jouer quand il a commencé sa partie
     await sleep(800)
     randomColorButtonStock= []
-    antiClick.classList.remove("blocus");
     GameOn = true
     console.log('Jeu commencé ' + GameOn) // je vérifie que la fonction est bien lancée
     newTurn() // On lance le jeu
@@ -75,6 +75,7 @@ async function reset(){
     console.log(randomColorButtonStock, colorButtonStock) // je vérifie que les tableaux soient bien vide
     await sleep(400)
     playerTurn = false
+    turn() // le joueur ne peut à nouveau plus cliquer sur les boutons.
     console.log(playerTurn)
 }
 
@@ -135,10 +136,11 @@ async function compare(){
         console.log('Bien joué')
         await sleep(100)
         newTurn()
+        playerTurn = false
+        turn() // On va empêcher le joueur de cliquer pendant que l'IA fait la combinaison de touches
     }
-    playerTurn = false
+    
 }
-
 
 async function clignotement(randomColorButtonStock){
     switch (randomColorButtonStock.id) {
@@ -174,10 +176,9 @@ async function clignotement(randomColorButtonStock){
     }
 }
 
-// On va continuer le jeu si les deux listes correspondent
 
 async function newTurn(){
-            //La vitesse augmente de 50ms à chaque tour jusqu'au 8eme tour
+    //La vitesse augmente de 50ms à chaque tour jusqu'au 8eme tour
     if (randomColorButtonStock.length < 9) {
         speed = speed - 100
     }
@@ -186,19 +187,22 @@ async function newTurn(){
     document.getElementById('ScoreByTurn').innerHTML= randomColorButtonStock.length ;
     generateRandomNumber()
     await sleep(100)
-    for (let i = 0; i < randomColorButtonStock.length; i++){
+    for (let i = 0; i < randomColorButtonStock.length; i++){ // On va continuer le jeu si les deux listes correspondent
         let audio = new Audio('https://meiglord.github.io/Super-Simon-JS/sounds/' + randomColorButtonStock[i] +".wav" )
         audio.play()
         clignotement(document.getElementById(randomColorButtonStock[i]))
         await sleep(speed)
     }
     playerTurn = true
+    turn() // L'IA a fini de jouer, le joueur peut désormais cliquer.
+    console.log(playerTurn)
     
 }
 
 // Fonction qui s'active quand le joueur perd
 function lose(){
     modalLose.style.display = "block";
+    document.getElementsByClassName('modal-body').innerHTML = "Tu as cliqué sur " + colorButtonStock + " cases et terminé " + randomColorButtonStock + " tours."
     GameOn = false
     reset()
     
