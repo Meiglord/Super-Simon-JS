@@ -21,8 +21,26 @@ let GameOn = false
 
 // Pour éviter que le joueur joue si il n'a pas à jouer (pendant que l'IA joue par exemple)
 
-let playerTurn = 0
+let playerTurn = false
 console.log(playerTurn)
+
+
+// Si c'est au joueur ou à l'IA de jouer
+switch (playerTurn) {
+    case 1:
+        antiClick.classList.remove("blocus")
+        document.getElementById('monTour').style.background = "rgb(0, 201, 7)"
+        document.getElementById('IATour').style.background ="grey";
+    break;
+
+    case 0:
+        antiClick.classList.add("blocus")
+        document.getElementById('IATour').style.background = "rgb(0, 201, 7)"
+        document.getElementById('monTour').style.background="grey";
+    break;
+}
+
+
 // fonction wait. ne pas oublier les async quand on l'utilise !
 
 function sleep(ms) {
@@ -56,7 +74,7 @@ async function reset(){
     antiClickStart.classList.remove("blocus"); // J'enlève la class qui empêche le joueur de cliquer sur Start
     console.log(randomColorButtonStock, colorButtonStock) // je vérifie que les tableaux soient bien vide
     await sleep(400)
-    playerTurn = 0
+    playerTurn = false
     console.log(playerTurn)
 }
 
@@ -174,7 +192,7 @@ async function newTurn(){
         clignotement(document.getElementById(randomColorButtonStock[i]))
         await sleep(speed)
     }
-    playerTurn = 1
+    playerTurn = true
     
 }
 
@@ -184,19 +202,4 @@ function lose(){
     GameOn = false
     reset()
     
-}
-
-// Si c'est au joueur ou à l'IA de jouer
-switch (playerTurn) {
-    case 1:
-        antiClick.classList.remove("blocus")
-        document.getElementById('monTour').style.background = "rgb(0, 201, 7)"
-        document.getElementById('IATour').style.background ="grey";
-    break;
-
-    case 0:
-        antiClick.classList.add("blocus")
-        document.getElementById('IATour').style.background = "rgb(0, 201, 7)"
-        document.getElementById('monTour').style.background="grey";
-    break;
 }
