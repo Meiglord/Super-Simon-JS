@@ -1,4 +1,4 @@
-// Le Modal
+// Le Modal de règles
 
 let modal = document.getElementById("Modal");
 

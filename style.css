@@ -28,22 +28,15 @@
     text-align: center;
 }
 
-.modal-header {
-    padding: 15px 10px;
-    background-color: #fefefe;
-    color: white;
-}
-
 .modal-contenu {
     position: relative;
     background-color: #fefefe;
     margin: auto;
-    padding: 0;
+    padding: 100;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
+    height: 300px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
 }
@@ -72,6 +65,21 @@
     cursor: pointer;
 }
 
+
+.modal-lose {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 100;
+    border: 1px solid #888;
+    width: 20%;
+    height: 200px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+
 .closeModalLose{
     color: rgb(26, 26, 26);
     float: right;
@@ -95,11 +103,9 @@
 
 .turn {
 
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    width: 110px;
     color: rgb(255, 255, 255);
-    padding: 15px 32px;
+    padding: 30px 30px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -109,13 +115,8 @@
 
 .turn2{
     background-color: grey;
-    margin-left: 20px;
-    
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
     color: rgb(255, 255, 255);
-    padding: 15px 32px;
+    padding: 30px 30px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -222,7 +223,7 @@ transform: translateY(3px);
     border-style: solid;
     border-width: 10px;
     margin: auto;
-    margin-top: 60px;
+    margin-top: 10px;
     box-shadow: 8px 8px 15px 5px #888888;
 }
 

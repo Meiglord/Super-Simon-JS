@@ -1,10 +1,14 @@
 // Mes variables
 
-// Tableau qui va stocker la couleur qu'on a générée aléatoirement
+// Tableau qui va stocker les cases qu'on a générées aléatoirement
 let randomColorButtonStock = []
 
-// Tableau qui va stocker les couleurs sur lesquelles l'utilisateur a cliqué
+// Tableau qui va stocker les cases sur lesquelles l'utilisateur a cliqué
 let colorButtonStock = []
+
+// Comme on va reset le color button stock à chaque tour, on a besoin d'une autre variable pour afficher le score par click
+
+let colorButtonStockScore = 1
 
 // Pour le moment, l'utilisateur ne peut pas cliquer sur les boutons Colorés. on définie une variable pour lever cette interdiction plus tard.
 let antiClick = document.getElementById('bloque');
@@ -55,7 +59,7 @@ function sleep(ms) {
 
 async function start(){
     antiClickStart.classList.add("blocus"); // J'empêche l'utilisateur de recliquer sur Jouer quand il a commencé sa partie
-    await sleep(800)
+    await sleep(600) // avant de lancer le jeu on laisse un petit délai
     randomColorButtonStock= []
     GameOn = true
     console.log('Jeu commencé ' + GameOn) // je vérifie que la fonction est bien lancée
@@ -68,11 +72,12 @@ async function reset(){
     GameOn = false
     randomColorButtonStock = [] // On remet à Zéro le tableau qui stockait la suite générée aléatoirement
     colorButtonStock = [] // idem pour le tableau qui stockait la suite que le joueur a entrée
+    colorButtonStockScore = 1 // idem pour le tableau qui affichait le score
     speed = 1700 // on réinitialise la vitesse
-    document.getElementById('ScoreByTurn').innerHTML= 0
+    document.getElementById('ScoreByTurn').innerHTML= 0 // On reset le score par tour
     document.getElementById('ScoreByClick').innerHTML= 0; // On reset le score par click
     antiClickStart.classList.remove("blocus"); // J'enlève la class qui empêche le joueur de cliquer sur Start
-    console.log(randomColorButtonStock, colorButtonStock) // je vérifie que les tableaux soient bien vide
+    console.log(randomColorButtonStock, colorButtonStock) // je vérifie que les tableaux sont bien vide
     await sleep(400)
     playerTurn = false
     turn() // le joueur ne peut à nouveau plus cliquer sur les boutons.
@@ -112,7 +117,7 @@ function generateRandomNumber(){
 // Quand on clique sur un bouton, on va push son ID dans l'array colorClick
 
 async function clickOnColorButton(id){
-    document.getElementById('ScoreByClick').innerHTML= colorButtonStock.length+1 ;
+    document.getElementById('ScoreByClick').innerHTML= colorButtonStockScore++ ;
     colorButtonStock.push(id)
     console.log('Le joueur a cliqué sur le bouton correspondant à ', colorButtonStock)
     let audio = new Audio('https://meiglord.github.io/Super-Simon-JS/sounds/' + id +".wav" )
@@ -132,10 +137,10 @@ async function compare(){
         }
         i++;
     });
-    if (randomColorButtonStock.length == colorButtonStock.length && GameOn == true ){
+    if (randomColorButtonStock.length == colorButtonStock.length && GameOn == true ){// on vérifie que la longueur des tableaux est la même ET que le jeu est lancé. Le AND permet d'éviter que le jeu fasse une comparaison après reset et lance la suite
         console.log('Bien joué')
         await sleep(100)
-        newTurn()
+        newTurn() // Si la suite du joueur correspond à celle de l'ia, on lance un nouveau tour
         playerTurn = false
         turn() // On va empêcher le joueur de cliquer pendant que l'IA fait la combinaison de touches
     }
@@ -184,7 +189,7 @@ async function newTurn(){
     }
     console.log(speed)
     colorButtonStock= []
-    document.getElementById('ScoreByTurn').innerHTML= randomColorButtonStock.length ;
+    document.getElementById('ScoreByTurn').innerHTML= randomColorButtonStock.length ; // On affiche le nombre de tours validés 
     generateRandomNumber()
     await sleep(100)
     for (let i = 0; i < randomColorButtonStock.length; i++){ // On va continuer le jeu si les deux listes correspondent
@@ -201,8 +206,10 @@ async function newTurn(){
 
 // Fonction qui s'active quand le joueur perd
 function lose(){
+    randomColorButtonStock.length = randomColorButtonStock.length-1
+    colorButtonStockScore = colorButtonStockScore-2
     modalLose.style.display = "block";
-    document.getElementsByClassName('modal-body').innerHTML = "Tu as cliqué sur " + colorButtonStock + " cases et terminé " + randomColorButtonStock + " tours."
+    document.getElementById('loseModal').innerHTML = "<br><br> GAME OVER <br><br><br> " + "Score : <br><br> " + colorButtonStockScore + " couleurs validées <br>" + randomColorButtonStock.length + " tours terminés."
     GameOn = false
     reset()
     

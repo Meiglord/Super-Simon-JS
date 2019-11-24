@@ -16,28 +16,22 @@
 <!-- Modal de Règles -->
 <div id="Modal" class="modal">
     <div class="modal-contenu">
-        <div class="modal-header">
         <span class="closeModal">&times;</span>
-        </div>
-        <div class="modal-body">
-            <p>Bienvenue sur Super Simon !</p>
-            <p>Cliquez sur Jouer pour commencer la partie.</p>
-            <p>Règles :</p>
-            <p>L'ordinateur va générer aléatoirement une suite qu'il vous faudra mémoriser. <br>
-            A votre tour, vous devrez restituer la suite dans le bon ordre. En cas d'erreur, retour à Zéro ! <br>
-            La suite commence à 1 et va ensuite augmenter de 1 à chaque tour. <br>
-            Les 8 premiers tours la vitesse du jeu va augmenter. <br>
-            Cliquez sur Reset pour réinitialiser la partie</p>
-        </div>
+        <p>Bienvenue sur Super Simon !</p>
+        <p>Cliquez sur Jouer pour commencer la partie.</p>
+        <p>Règles :</p>
+        <p>L'ordinateur va générer aléatoirement une suite qu'il vous faudra mémoriser. <br>
+        A votre tour, vous devrez restituer la suite dans le bon ordre. En cas d'erreur, retour à Zéro ! <br>
+        La suite commence à 1 et va ensuite augmenter de 1 à chaque tour. <br>
+        Les 8 premiers tours la vitesse du jeu va augmenter. <br>
+        Cliquez sur Reset pour réinitialiser la partie</p>
     </div>
 </div>
 
 <div id="ModalLose" class="modal">
-    <div class="modal-contenu">
-        <div class="modal-header">
+    <div class="modal-lose">
         <span class="closeModalLose">&times;</span>
-        </div>
-        <div class="modalBodyLose">
+        <div class="" id="loseModal">
         </div>
     </div>
 </div>
@@ -58,11 +52,10 @@
     </div>
     <div id="cercle-interne">
         <div class="score" id=""> 
+            Click(s) validée(s) :
+            <p id="ScoreByClick">0</p>
             Tour(s) terminé(s) : 
             <p id="ScoreByTurn">0</p>
-            Case(s) cliquée(s) :
-            <p id="ScoreByClick">0</p>
-
         </div>
         <div class="startstop">
             <button id="start" onclick="start()">Jouer</button>
