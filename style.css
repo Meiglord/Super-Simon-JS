@@ -87,8 +87,10 @@
 }
 
 /* Tours */
-.zebi{  
-    margin: auto;
+.tt{  
+    margin: 0 auto;
+    width: 350px; 
+    
 }
 
 .turn {
@@ -96,13 +98,29 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border: none;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    background-color: grey;
+}
+
+.turn2{
+    background-color: grey;
+    margin-left: 20px;
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(255, 255, 255);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
 }
 
 /* Score */

@@ -23,14 +23,11 @@
             <p>Bienvenue sur Super Simon !</p>
             <p>Cliquez sur Jouer pour commencer la partie.</p>
             <p>Règles :</p>
-            <ol>
-                <li>L'ordinateur va générer aléatoirement une suite qu'il vous faudra mémoriser.</li>
-                <li>A votre tour, vous devrez restituer la suite dans le bon ordre. En cas d'erreur, retour à Zéro !</li>
-                <li>La suite commence à 1 et va ensuite augmenter de 1 à chaque tour.</li>
-                <li>Les 8 premiers tours la vitesse de l'ordi va augmenter</li>
-                <li>Cliquez sur Reset pour réinitialiser la partie</li>
-                <li></li>
-            </ol>
+            <p>L'ordinateur va générer aléatoirement une suite qu'il vous faudra mémoriser. <br>
+            A votre tour, vous devrez restituer la suite dans le bon ordre. En cas d'erreur, retour à Zéro ! <br>
+            La suite commence à 1 et va ensuite augmenter de 1 à chaque tour. <br>
+            Les 8 premiers tours la vitesse du jeu va augmenter. <br>
+            Cliquez sur Reset pour réinitialiser la partie</p>
         </div>
     </div>
 </div>
@@ -40,15 +37,15 @@
         <div class="modal-header">
         <span class="closeModalLose">&times;</span>
         </div>
-        <div class="modal-body">
+        <div class="modalBodyLose">
         </div>
     </div>
 </div>
 
 
-<div class="zebi">
-    <p class="turn monTour" id="">A ton tour</p>
-    <p class="turn IATour" id="">Mémorise la suite</p>
+<div class="tt">
+    <p class="turn " id="myTurn">A ton tour</p>
+    <p class="turn2 " id="IATurn">Mémorise la suite</p>
 
 </div>
 
@@ -64,7 +61,7 @@
             Tour(s) terminé(s) : 
             <p id="ScoreByTurn">0</p>
             Case(s) cliquée(s) :
-            <p id="ScoreByClick"> azeaze a0</p>
+            <p id="ScoreByClick">0</p>
 
         </div>
         <div class="startstop">

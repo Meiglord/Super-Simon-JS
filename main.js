@@ -30,15 +30,15 @@ function turn(){
     switch (playerTurn) {
         case false:
             antiClick.classList.add("blocus")
-            document.getElementsByClassName('monTour').style.backgroundColor  = "rgb(0, 201, 7)";
-            document.getElementsByClassName('IATour').style.backgroundColor  ="grey";
+            document.getElementById('IATurn').style.backgroundColor  = "rgb(0, 201, 7)";
+            document.getElementById('myTurn').style.backgroundColor  ="grey";
             console.log('Le joueur ne peut pas jouer ')
         break;
 
         case true:
             antiClick.classList.remove("blocus")
-            document.getElementsByClassName('IATour').style.backgroundColor = "rgb(0, 201, 7)";
-            document.getElementsByClassName('monTour').style.backgroundColor ="grey";
+            document.getElementById('myTurn').style.backgroundColor = "rgb(0, 201, 7)";
+            document.getElementById('IATurn').style.backgroundColor ="grey";
             console.log('Le joueur peut jouer ')
         break;
     }
@@ -68,7 +68,7 @@ async function reset(){
     GameOn = false
     randomColorButtonStock = [] // On remet à Zéro le tableau qui stockait la suite générée aléatoirement
     colorButtonStock = [] // idem pour le tableau qui stockait la suite que le joueur a entrée
-    speed = 1700
+    speed = 1700 // on réinitialise la vitesse
     document.getElementById('ScoreByTurn').innerHTML= 0
     document.getElementById('ScoreByClick').innerHTML= 0; // On reset le score par click
     antiClickStart.classList.remove("blocus"); // J'enlève la class qui empêche le joueur de cliquer sur Start
