@@ -7,7 +7,6 @@ let randomColorButtonStock = []
 let colorButtonStock = []
 
 // Comme on va reset le color button stock à chaque tour, on a besoin d'une autre variable pour afficher le score par click
-
 let colorButtonStockScore = 1
 
 // Pour le moment, l'utilisateur ne peut pas cliquer sur les boutons Colorés. on définie une variable pour lever cette interdiction plus tard.
@@ -20,14 +19,11 @@ let antiClickStart = document.getElementById("start");
 let speed = 1400
 
 // Pour éviter les bugs
-
 let GameOn = false
 
-// Pour éviter que le joueur joue si il n'a pas à jouer (pendant que l'IA joue par exemple)
+// Pour éviter que le joueur ne clique pendant que l'IA montre la suite. On utilisera cette variable dans la fonction turn
 
 let playerTurn = false
-console.log('Le joueur peut-il jouer ? ' + playerTurn)
-
 
 // Si c'est au joueur de jouer : on lui permet de cliquer et on le lui dit, sinon, il ne peut pas cliquer et on le lui dit aussi.
 function turn(){ 
@@ -48,15 +44,12 @@ function turn(){
     }
 }
 
-// fonction wait. ne pas oublier les async quand on l'utilise !
-
+// fonction wait. ne pas oublier les async quand on l'utilise ! Elle permet d'attendre un laps de temps (défini en ms) avant d'éxécuter la suite de la fonction
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-
 // Lancement du jeu
-
 async function start(){
     antiClickStart.classList.add("blocus"); // J'empêche l'utilisateur de recliquer sur Jouer quand il a commencé sa partie
     await sleep(600) // avant de lancer le jeu on laisse un petit délai
@@ -67,7 +60,6 @@ async function start(){
 }
 
 // Reset de la partie quand le joueur clique
-
 async function reset(){
     GameOn = false
     randomColorButtonStock = [] // On remet à Zéro le tableau qui stockait la suite générée aléatoirement
@@ -114,39 +106,7 @@ function generateRandomNumber(){
     console.log('Le Nombre généré aléatoirement est ',randomColorButtonStock)
 }
 
-// Quand on clique sur un bouton, on va push son ID dans l'array colorClick
-
-async function clickOnColorButton(id){
-    document.getElementById('ScoreByClick').innerHTML= colorButtonStockScore++ ;
-    colorButtonStock.push(id)
-    console.log('Le joueur a cliqué sur le bouton correspondant à ', colorButtonStock)
-    let audio = new Audio('https://meiglord.github.io/Super-Simon-JS/sounds/' + id +".wav" )
-        audio.play()
-    await sleep(speed)
-    compare()
-    
-}
-
-// compare les deux array
-
-async function compare(){
-    let i = 0;
-    colorButtonStock.forEach(element => {
-        if (element !== randomColorButtonStock[i]){
-            lose();
-        }
-        i++;
-    });
-    if (randomColorButtonStock.length == colorButtonStock.length && GameOn == true ){// on vérifie que la longueur des tableaux est la même ET que le jeu est lancé. Le AND permet d'éviter que le jeu fasse une comparaison après reset et lance la suite
-        console.log('Bien joué')
-        await sleep(100)
-        newTurn() // Si la suite du joueur correspond à celle de l'ia, on lance un nouveau tour
-        playerTurn = false
-        turn() // On va empêcher le joueur de cliquer pendant que l'IA fait la combinaison de touches
-    }
-    
-}
-
+// Fonction qui va être utilisée en for par l'IA, qui fera clignoter les touches et qui va aller de plus en plus vite
 async function clignotement(randomColorButtonStock){
     switch (randomColorButtonStock.id) {
         case "0":
@@ -181,7 +141,38 @@ async function clignotement(randomColorButtonStock){
     }
 }
 
+// Quand le joueur clique sur un bouton, on va push son ID dans l'array colorButtonStock
+async function clickOnColorButton(id){
+    document.getElementById('ScoreByClick').innerHTML= colorButtonStockScore++ ;
+    colorButtonStock.push(id)
+    console.log('Le joueur a cliqué sur le bouton correspondant à ', colorButtonStock)
+    let audio = new Audio('https://meiglord.github.io/Super-Simon-JS/sounds/' + id +".wav" )
+        audio.play()
+    await sleep(speed)
+    compare()
+    
+}
 
+// compare les deux array
+async function compare(){
+    let i = 0;
+    colorButtonStock.forEach(element => {
+        if (element !== randomColorButtonStock[i]){
+            lose();
+        }
+        i++;
+    });
+    if (randomColorButtonStock.length == colorButtonStock.length && GameOn == true ){// on vérifie que la longueur des tableaux est la même ET que le jeu est lancé. Le AND permet d'éviter que le jeu fasse une comparaison après reset et lance la suite
+        console.log('Bien joué')
+        await sleep(100)
+        newTurn() // Si la suite du joueur correspond à celle de l'ia, on lance un nouveau tour
+        playerTurn = false
+        turn() // On va empêcher le joueur de cliquer pendant que l'IA fait la combinaison de touches
+    }
+    
+}
+
+// Fonction qui s'active quand la suite réalisée par le joueur correspond à celle de l'IA
 async function newTurn(){
     //La vitesse augmente de 50ms à chaque tour jusqu'au 8eme tour
     if (randomColorButtonStock.length < 9) {
